@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^8.0.0",
     "@angular/router": "^8.0.0",
     "core-js": "^2.6.5",
+    "es6-tween": "^5.5.10",
     "rxjs": "^6.5.2",
     "three": "^0.106.1",
     "zone.js": "~0.9.1"
