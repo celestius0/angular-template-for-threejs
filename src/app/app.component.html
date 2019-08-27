@@ -24,7 +24,8 @@ Y translation: <input type="range" min="-50" max="50" step="1" [(ngModel)]="tran
 <atft-orbit-controls [rotateSpeed]=1 [zoomSpeed]=1.2 [listeningControlElement]=mainRenderer.renderPane>
   <atft-webgl-renderer #mainRenderer>
 
-    <atft-perspective-camera #thecam [fov]=60 [near]=1 [far]=1100 [positionX]="0" [positionY]="0" [positionZ]="100"></atft-perspective-camera>
+    <!-- <atft-perspective-camera #thecam [fov]=60 [near]=1 [far]=1100 [positionX]="100" [positionY]="100" [positionZ]="100"></atft-perspective-camera> -->
+    <atft-perspective-camera #thecam [fov]=60 [near]=1 [far]=1100 [positionX]="-(camX/10) + 32" [positionY]="-(camY/10) + 32" [positionZ]="75"></atft-perspective-camera>
 
     <atft-scene>      
       <atft-axes-helper size=200></atft-axes-helper>
@@ -43,12 +44,12 @@ Y translation: <input type="range" min="-50" max="50" step="1" [(ngModel)]="tran
       </atft-obj-loader> -->
 
       <div *ngFor="let z of [-10, -5, 0, 5, 10]">
-        <atft-object-loader *ngFor="let x of [0,5,10,15,20]" model="assets/model/Server.json" [translateX]="(camX/10) - 32" [translateZ]="z"
+        <atft-object-loader *ngFor="let x of [0,5,10,15,20]" model="assets/model/Server.json" [translateX]="0" [translateZ]="z+30"
           [renderer]="mainRenderer"
           [rotateX]="rotationX"
           [rotateY]="rotationY"
           [rotateZ]="rotationZ"
-          [translateY]="(camY/10) - 32"
+          [translateY]="0"
           >
         </atft-object-loader>
       </div>

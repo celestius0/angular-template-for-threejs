@@ -1,4 +1,4 @@
-import { Directive, Input, forwardRef, HostListener } from '@angular/core';
+import { Directive, Input, forwardRef, HostListener, OnChanges } from '@angular/core';
 import { AbstractCamera } from './abstract-camera';
 import * as THREE from 'three';
 
@@ -6,7 +6,7 @@ import * as THREE from 'three';
   selector: 'atft-perspective-camera',
   providers: [{ provide: AbstractCamera, useExisting: forwardRef(() => PerspectiveCameraDirective) }]
 })
-export class PerspectiveCameraDirective extends AbstractCamera<THREE.PerspectiveCamera> {
+export class PerspectiveCameraDirective extends AbstractCamera<THREE.PerspectiveCamera> implements OnChanges{
 
   // @Input() cameraTarget: THREE.Object3D;
 
@@ -34,11 +34,20 @@ export class PerspectiveCameraDirective extends AbstractCamera<THREE.Perspective
       this.far
     );
 
+
+
     // Set position and look at
     this.camera.position.x = this.positionX;
     this.camera.position.y = this.positionY;
     this.camera.position.z = this.positionZ;
     this.camera.updateProjectionMatrix();
+  }
+
+  ngOnChanges($e): void {
+    
+    this.updateCamPosition();
+    
+    
   }
 
   public updateAspectRatio(aspect: number) {
@@ -47,5 +56,13 @@ export class PerspectiveCameraDirective extends AbstractCamera<THREE.Perspective
     this.camera.updateProjectionMatrix();
   }
 
+
+  protected updateCamPosition() {
+    this.camera.position.x = this.positionX;
+    this.camera.position.y = this.positionY;
+    this.camera.position.z = this.positionZ;
+    this.camera.updateProjectionMatrix();
+    // console.log(this.camera);
+  }
 
 }

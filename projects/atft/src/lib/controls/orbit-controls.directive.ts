@@ -83,6 +83,13 @@ export class OrbitControlsDirective implements AfterViewInit, OnChanges, OnDestr
     this.controls.zoomSpeed = this.zoomSpeed;
     this.controls.addEventListener('change', this.childRenderers.first.render);
     this.childRenderers.first.render();
+
+    // Hack to get the camera attached to the facetracker
+    setInterval(
+      () => {
+        // console.log('camera update');
+        this.childRenderers.first.render();
+      }, 30/1000);
   }
 
   ngAfterViewInit(): void {

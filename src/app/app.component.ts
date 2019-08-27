@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   public camY = 0;
   public camZ = 0;
 
-  private fps = 15;
+  private fps = 10;
 
   private faceDetector = new FaceDetector();
   public faceCenterCoord;
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
           // console.log(DetectedFaces);
           if (DetectedFaces.length > 0) {
 
-            
+            // console.log(DetectedFaces);
 
             // Tweening simulates tracking the face position at higher intervals than the fps, essentially interpolating the inbetween positions and smooths out the movement.
             // Get the last position of the tracked face
@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
               })
               .start();
 
-            // // Non-Tween Cam movement (requires much higher framerate and is way more taxing on the hardware)
+            // // // Non-Tween Cam movement (requires much higher framerate and is way more taxing on the hardware)
             // this.camX = DetectedFaces[0].boundingBox.left + (DetectedFaces[0].boundingBox.width / 2);
             // this.camY = DetectedFaces[0].boundingBox.top + (DetectedFaces[0].boundingBox.height / 2);
 
